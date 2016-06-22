@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topic 1: JavaScript Intro and jQuery</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="jquery-3.0.0.min.js"></script>
+</head>
+<body>
+    <section>
+        <h1>Hello world!</h1>
+    </section>
+    <button type="button" onclick="window.location='index.html';">Go to your page</button>
+    <form>
+        <input type="text" class="autofocus" title="abc">
+    </form>
+
+
+</body>
+
+<script>
+    $(document).ready(function () {
+        $("section").fadeIn(2000, "swing", function () {
+            $(".autofocus").focus();
+        });
+    });
+
+</script>
+</html>
