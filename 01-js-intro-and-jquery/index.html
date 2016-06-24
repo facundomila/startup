@@ -7,20 +7,61 @@
     <script src="jquery-3.0.0.min.js"></script>
 </head>
 <body>
-    <section>
+    <section id="hello">
         <h1>Hello world!</h1>
     </section>
-    <button type="button" onclick="window.location='index.html';">Refresh</button>
-    <form>
-        <input type="text" class="autofocus" title="abc">
-    </form>
+    <div class="middle">
+        <button class=" " type="button">Ajax calling</button> <!--onclick="window.location='index.html';"-->
+        <form>
+            <input type="text" class="autofocus" title="abc">
+        </form>
+    </div>
+    <section id="spotify"></section>
 </body>
 <script>
     $(document).ready(function () {
-        $("section").fadeIn(2000, "swing", function () {
+        $("#hello").fadeIn(2000, "swing", function () {
             $(".autofocus").focus();
         });
     });
 
+    $("button").click(function() {
+        $.ajax({
+            url: 'http://bootcamp.aws.af.cm/welcome/yourname',
+            data: {
+                format: 'json'
+            },
+            error: function() {
+                $("#hello").css({"color": "red"});
+                $("#hello").html('<p class="error_message">An error has occurred</p>');
+            },
+            dataType: 'jsonp',
+            success: function() {
+                $("#hello").html('<p>The server is available</p>');
+            },
+            type: 'GET'
+        });
+    });
+
+    $(document).ready(function() {
+        $.ajax({
+            url: 'https://api.spotify.com/v1/search',
+            type: 'GET',
+            data: {
+                q: 'Rolling Stones',
+                type: 'album'
+            },
+            error: function() {
+                $("#spotify").html('<p class="error_message">An error has occurred</p>');
+            },
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                $.each(data.albums.items, function(key,album) {
+                    console.log(album);
+                    $("#spotify").append("<article><img src="+ album.images[0].url  + ">"+ album.name +" - " + album.type + "</article>");
+                });}
+        });
+    });
 </script>
 </html>

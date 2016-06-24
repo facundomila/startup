@@ -1,4 +1,43 @@
+body {
+    color: black;
+}
+
 section {
+    margin-right: auto;
+    margin-left: auto;
+    align-self: center;
+    background-color: whitesmoke;
+    width: 60%;
+    padding: 15px;
+}
+
+.middle {
+    width: 60%;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#hello {
     align-content: center;
-    display: none
+    display: none;
+}
+
+#spotify {
+    background-color: darkgrey;
+
+}
+
+button {
+    margin: 10px
+}
+
+img {
+    width: 120px;
+    margin-right: 5px;
+}
+
+article {
+    margin-bottom: 10px;
 }
