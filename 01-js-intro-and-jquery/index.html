@@ -9,11 +9,14 @@
 <body>
     <section id="hello">
         <h1>Hello world!</h1>
+        <button id="call" type="button">Ajax calling</button>
     </section>
     <div class="middle">
-        <button class=" " type="button">Ajax calling</button> <!--onclick="window.location='index.html';"-->
         <form>
-            <input type="text" class="autofocus" title="abc">
+              <span>Artist: <input type="text" class="autofocus" name="artist" value="Rolling Stones">
+                    Type: <input type="text" name="album" value="album">
+                    <button id="search" type="button">Search</button>
+              </span>
         </form>
     </div>
     <section id="spotify"></section>
@@ -25,7 +28,7 @@
         });
     });
 
-    $("button").click(function() {
+    $("#call").click(function() {
         $.ajax({
             url: 'http://bootcamp.aws.af.cm/welcome/yourname',
             data: {
@@ -43,25 +46,29 @@
         });
     });
 
-    $(document).ready(function() {
+    var pullSpotyInfo = function () {
         $.ajax({
             url: 'https://api.spotify.com/v1/search',
             type: 'GET',
             data: {
-                q: 'Rolling Stones',
-                type: 'album'
+                q: $("input[name=artist]").val(),
+                type: $("input[name=album]").val()
             },
-            error: function() {
+            error: function () {
                 $("#spotify").html('<p class="error_message">An error has occurred</p>');
             },
             dataType: 'json',
-            success: function(data) {
+            success: function (data) {
                 console.log(data);
-                $.each(data.albums.items, function(key,album) {
-                    console.log(album);
-                    $("#spotify").append("<article><img src="+ album.images[0].url  + ">"+ album.name +" - " + album.type + "</article>");
-                });}
+                $("#spotify").html('');
+                $.each(data.albums.items, function (key, album) {
+                    $("#spotify").append("<img src=" + album.images[0].url + "><div class='details'>" + album.name
+                            + "</br>" + album.type + " </br><a href=" + album.url + ">Listen this</a></div></article>");
+                });
+            }
         });
-    });
+    };
+    $(document).ready(pullSpotyInfo);
+    $("#search").click(pullSpotyInfo);
 </script>
 </html>

@@ -1,23 +1,31 @@
 body {
-    color: black;
+    color: #82aad3;
+    font-family: "DejaVu Serif";
 }
 
 section {
     margin-right: auto;
     margin-left: auto;
     align-self: center;
-    background-color: whitesmoke;
+    background-color: #3b5998;
     width: 60%;
     padding: 15px;
 }
 
 .middle {
+    color: #3b5998;
+    background-color: #8b9dc3;
+    padding: 15px;
     width: 60%;
-    height: 80px;
     margin-left: auto;
     margin-right: auto;
 }
 
+.details {
+    color: #3b5998;
+    height: 130px;
+    font-size: small;
+}
 
 #hello {
     align-content: center;
@@ -25,19 +33,43 @@ section {
 }
 
 #spotify {
-    background-color: darkgrey;
+    background-color: #F7f7f7;
 
 }
 
 button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
     margin: 10px
 }
 
 img {
     width: 120px;
     margin-right: 5px;
+    float: left;
 }
 
 article {
+    overflow: auto;
     margin-bottom: 10px;
+    border: medium #3b5998;
+
+}
+
+input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 0px solid red;
+    border-radius: 4px;
+}
+
+input:focus {
+    background-color: yellow;
 }
