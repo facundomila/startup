@@ -1,5 +1,5 @@
 body {
-    color: #82aad3;
+    color: #FFF;
     font-family: "DejaVu Serif";
 }
 
@@ -7,7 +7,7 @@ section {
     margin-right: auto;
     margin-left: auto;
     align-self: center;
-    background-color: #3b5998;
+    background-color: #ff7c00;
     width: 60%;
     padding: 15px;
 }
@@ -21,8 +21,12 @@ section {
     margin-right: auto;
 }
 
+img.bell {
+    width: 35px;
+}
+
 .details {
-    color: #3b5998;
+    color: #8b9dc3;
     height: 130px;
     font-size: small;
 }
@@ -32,15 +36,41 @@ section {
     display: none;
 }
 
-#spotify {
+#youtube {
     background-color: #F7f7f7;
 
 }
+button.bell {
+    color: #4CAF50;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px;
+    background-color: transparent;
+    position: relative;
+}
 
-button {
+#message {
+    background-color: #FFFFFF;
+    width: 180px;
+    position: absolute;
+    top: 45px;
+    left: 350px;
+    padding: 25px;
+    z-index: 1000;
+    height: 15px;
+    display: none;
+}
+
+button#call {
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
+    cursor: pointer;
     padding: 10px 22px;
     text-align: center;
     text-decoration: none;
@@ -49,7 +79,7 @@ button {
     margin: 10px
 }
 
-img {
+img.track {
     width: 120px;
     margin-right: 5px;
     float: left;

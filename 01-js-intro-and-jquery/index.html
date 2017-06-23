@@ -46,11 +46,12 @@
         });
     });
 
-    var pullSpotyInfo = function () {
+    var pullYoutubeInfo = function () {
         $.ajax({
             url: 'https://api.spotify.com/v1/search',
             type: 'GET',
             data: {
+                searchQuantity: 12,
                 q: $("input[name=artist]").val(),
                 type: $("input[name=album]").val()
             },
@@ -68,7 +69,7 @@
             }
         });
     };
-    $(document).ready(pullSpotyInfo);
-    $("#search").click(pullSpotyInfo);
+    $(document).ready(pullYoutubeInfo);
+    $("#search").click(pullYoutubeInfo);
 </script>
 </html>

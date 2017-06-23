@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topic 1: JavaScript Intro and jQuery</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="jquery-3.0.0.min.js"></script>
+
+</head>
+<body>
+    <section id="hello">
+        <h1>Hello world!</h1>
+        <div class="notification">
+            <button class="bell">
+                <i class="fa fa-bell" aria-hidden="true"></i>
+            </button>
+            <div id="message"></div>
+        </div>
+        <button id="call" type="button">Ajax calling</button>
+    </section>
+    <div class="middle">
+        <form>
+              <span>Artist: <input type="text" class="autofocus" name="artist" value="Rolling Stones">
+                    Type: <input type="radio" name="type" value="youtube#video" checked>Video
+                    <input type="radio" name="type" value="youtube#playlist">Playlist<br>
+                  <button id="search" type="button">Search</button>
+              </span>
+        </form>
+    </div>
+    <section id="youtube"></section>
+</body>
+<script>
+    $(document).ready(function(){
+        $("button.bell").click(function(){
+            $("#message").fadeToggle(150);
+        });
+    });
+
+    $(document).ready(function () {
+        $("#hello").fadeIn(2000, "swing", function () {
+            $(".autofocus").focus();
+        });
+    });
+
+    $("#call").click(function() {
+        $.ajax({
+            url: 'http://bootcamp.aws.af.cm/welcome/yourname',
+            data: {
+                format: 'json'
+            },
+            error: function() {
+                $("#hello").css({"color": "red"});
+                $("#hello").html('<p class="error_message">An error has occurred</p>');
+            },
+            dataType: 'jsonp',
+            success: function() {
+                $("#hello").html('<p>The server is available</p>');
+            },
+            type: 'GET'
+        });
+    });
+
+    var pullYoutubeInfo = function () {
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/search',
+            type: 'GET',
+            data: {
+            	key: 'AIzaSyCqh-RXfZYg27_7C_usxxDCB_42g2KlQGc',
+                maxResults: 12,
+            	part: 'snippet',
+                q: $("input[name=artist]").val(),
+                type: $("input[name=type]").val()
+            },
+            cache: false,
+	 		error: function () {
+                $("#youtube").html('<p class="error_message">An error has occurred</p>');
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log('aaa',data.items[0].id.kind);
+                $("#youtube").html('');
+
+                showSearchResults(data);
+            }
+        });
+    };
+    $(document).ready(pullYoutubeInfo);
+    $("#search").click(pullYoutubeInfo);
+
+    function showSearchResults(data) {
+        return (
+            $.each(data.items, function (key, track) {
+            console.log('uuu',track)
+                $("#youtube").append(
+                "<img class='track' src=" + track.snippet.thumbnails.default.url + ">" +
+                "<div class='details'>" + track.snippet.title + "</br>"
+                + track.type + " </br>" +
+                "<a href=" + track.url + ">View this</a></div>"
+                );
+            })
+        )
+    }
+
+   /* function showVideos(data) {
+        return (
+                $.each
+        )
+    }*/
+</script>
+</html>

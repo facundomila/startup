@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topic 2 - Design Patterns and OOP in JavaScript</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    var Movie = function (title, duration) {
+        this.title = title;
+        this.duration = duration;
+    };
+    Movie.prototype.title = 'asdkjl';
+    Movie.prototype.duration = '55min';
+
+    Movie.prototype.get = function (attr) {
+        return this[attr];
+    };
+
+    Movie.prototype.set = function (attr, value) {
+        console.log();
+        this[attr] = value;
+    };
+
+    Movie.prototype.play = function () {};
+    Movie.prototype.stop = function () {};
+
+
+    //var HarryPotter = new Movie('harry potter');
+    /*hashmap: "",
+     play: function () {
+     return null;
+     },
+     stop: function () {
+     return null;
+     },
+     setValue: function (attr, value) {
+     return this.name;
+     },
+     getValue: function (attr) {
+     return this.name;
+     }*/
+    //document.write (movie.play());
+
+    /*function Movie(hashmap) {
+        this.hashmap = hashmap;
+        this.play = function() {
+            return this.hashmap + " and I live on " + this.play;
+        }
+    }
+    var petMoreno = new Person("Pet Moreno", "Ituzaingo 1323");
+    document.write (petMoreno.info() + "</br>");*/
+
+</script>
+
+</body>
+</html>
